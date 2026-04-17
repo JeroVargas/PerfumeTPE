@@ -1,6 +1,7 @@
 Integrantes:
 
 Jeronimo Vargas 
+
 Nicolas Diaz
 
 Correos electrónicos:
