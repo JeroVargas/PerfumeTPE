@@ -1,0 +1,228 @@
+/* 🌑 Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #0f0f10;
+    color: #eaeaea;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* 🧭 NAVBAR MODERNO */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(15, 15, 16, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 100;
+}
+
+/* 🔥 ACA SE SACAN LOS PUNTOS */
+nav ul {
+    list-style: none;
+}
+
+/* menú */
+nav .menu {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+nav .menu li {
+    list-style: none;
+}
+
+nav .menu a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav .menu a:hover {
+    color: #d4a373;
+}
+
+/* 🏆 HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+                url("../img/fondoPagina.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #bbb;
+    margin-bottom: 40px;
+}
+
+/* 🟡 BOTÓN */
+.btn {
+    padding: 14px 36px;
+    border-radius: 40px;
+    background: #d4a373;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #e6b98c;
+    transform: translateY(-2px);
+}
+
+/* 🧴 GRID */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 60px;
+}
+
+/* 🧾 CARD */
+.item-card {
+    background: #18181a;
+    border-radius: 14px;
+    padding: 25px;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.item-card:hover {
+    transform: translateY(-6px);
+    border-color: #d4a373;
+}
+
+.item-card h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.item-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.item-card strong {
+    color: #d4a373;
+}
+
+/* 🧱 SECCIÓN */
+.product-section {
+    padding: 60px;
+}
+
+.product-section h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* 🔐 LOGIN */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.login-form {
+    background: #18181a;
+    padding: 40px;
+    border-radius: 14px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form h2 {
+    text-align: center;
+}
+
+.login-form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #111;
+    color: white;
+}
+
+.login-form button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #d4a373;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 🪞 FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #111;
+    color: #777;
+}
+
+/* 🧠 BOTONES */
+.btn-editar { background: #3498db; }
+.btn-eliminar { background: #e74c3c; }
+.btn-agregar { background: #2ecc71; }
+
+.btn-editar, .btn-eliminar, .btn-agregar {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .card-grid {
+        padding: 20px;
+    }
+}
