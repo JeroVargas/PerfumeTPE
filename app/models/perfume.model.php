@@ -1,6 +1,6 @@
 <?php
 class PerfumeModel{
-private $db;
+    private $db;
 
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=perfumetpe;charset=utf8', 'root', '');
