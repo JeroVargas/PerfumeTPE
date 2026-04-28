@@ -1,0 +1,32 @@
+<?php require 'app/views/templates/layout/header.phtml' ?>
+
+<main class="container py-5">
+    <section class="product-section">
+
+        <h2 class="mb-3">Lista de Categorías</h2>
+        <p class="section-description">Explora nuestras categorías de perfumes.</p>
+
+        <?php if (empty($categorias)): ?>
+            <div class="alert alert-info text-center">
+                No hay categorías cargadas.
+            </div>
+        <?php else: ?>
+            <div class="card-grid">
+                <?php foreach ($categorias as $cat): ?>
+                    <div class="item-card">
+                        <h3><?= htmlspecialchars($cat->nombre) ?></h3>
+
+                        <div class="item-card-footer">
+                            <a href="detalle_categoria/<?= $cat->id ?>">
+                                Ver perfumes →
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+    </section>
+</main>
+
+<?php require 'app/views/templates/layout/footer.phtml' ?>

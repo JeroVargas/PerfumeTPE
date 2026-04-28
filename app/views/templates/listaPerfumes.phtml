@@ -2,10 +2,10 @@
 <main class="container py-5">
     <section id="catalogo" class="product-section">
         <h2 class="mb-3">
-            <?php echo isset($categoria_nombre) ? 'Perfumes de ' . htmlspecialchars($categoria_nombre) : 'Catálogo de Pisos'; ?>
+            <?php echo isset($categoria_nombre) ? 'Perfumes de ' . htmlspecialchars($categoria_nombre) : 'Catálogo de Perfumes'; ?>
         </h2>
         <p class="section-description">Explora nuestra selección premium de perfumes, incluyendo variedades
-            específicas de Floral y Arabe.</p>
+            específicas de Floral, Arabe y Citrico.</p>
 
         <?php if (empty($perfumes)): ?>
             <div class="alert alert-info text-center" role="alert">
@@ -20,10 +20,10 @@
                             <p><strong>Categoría:</strong> <?= htmlspecialchars($perfumes->categoria) ?></p>
                             <p><strong>Nombre:</strong> <?= htmlspecialchars($perfumes->nombre) ?></p>
                             <p><strong>Nota:</strong> <?= htmlspecialchars($perfumes->nota) ?></p>
-                            <p><strong>Precio:</strong> <?= htmlspecialchars($perfumes->precio) ?></p>
+                            <p><strong>Precio:</strong> $<?= htmlspecialchars($perfumes->precio)?></p>
                         </div>
                         <div class="item-card-footer">
-                            <a href="detalle_piso/<?= $perfumes->id ?>">Ver más detalles →</a>
+                            <a href="detalle_perfume/<?= $perfumes->id ?>">Ver más detalles →</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

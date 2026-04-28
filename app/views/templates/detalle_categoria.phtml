@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Categoría</title>
+</head>
+<body>
+
+    <h1>Perfumes de la categoría</h1>
+
+    <?php if (!empty($categoria)): ?>
+
+        <h2><?php echo $categoria[0]->nombre_categoria; ?></h2>
+
+        <ul>
+            <?php foreach ($categoria as $perfume): ?>
+                <li>
+                    <?php echo $perfume->nombre; ?> - $<?php echo $perfume->precio; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+    <?php else: ?>
+        <p>No hay perfumes en esta categoría.</p>
+    <?php endif; ?>
+
+</body>
+</html>

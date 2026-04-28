@@ -1,0 +1,28 @@
+<?php require_once './app/views/templates/layout/header.phtml'; ?>
+
+<div class="container">
+    <h1>Detalle del Perfume</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <td><?= $perfume->nombre ?></td>
+            </tr>
+            <tr>
+                <th>Nota</th>
+                <td><?= $perfume->nota ?></td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>$<?= $perfume->precio ?></td>
+            </tr>
+            <tr>
+                <th>Tipo de Variante</th>
+                <td><?= $perfume->tipo_variante ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<?php require_once './app/views/templates/layout/footer.phtml'; ?>

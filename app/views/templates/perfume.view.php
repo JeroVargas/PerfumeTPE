@@ -15,4 +15,12 @@ class PerfumeView{
     public function showPerfumes($perfumes){
         require 'app/views/templates/listaPerfumes.phtml';
     }
+
+    public function showPerfumeDetail($perfume){
+        require 'app/views/templates/detalle_perfume.phtml';
+    }
+
+     public function showError($error){
+        require 'app/views/templates/error.phtml';
+    }
 }
