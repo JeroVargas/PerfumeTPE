@@ -1,51 +1,51 @@
-# Aura Premium - Gestor de Alta Perfumería
+# Aura Premium
 
 ## Integrantes
 - Jerónimo Vargas (jeronimovargas26@gmail.com)
 - Nicolas Diaz Rodriguez (diaznicoo240@gmail.com)
 
 ## Temática
-Web de catálogo y gestión de alta perfumería y sus familias olfativas.
+Gestión de catálogo de alta perfumería y sus familias olfativas (categorías).
 
 ## Descripción
-El sistema permite explorar y administrar un catálogo de perfumes y las categorías (familias olfativas) a las que pertenecen. En la base de datos se almacena el nombre del perfume, sus notas aromáticas, precio, tipo de variante e imágenes opcionales. Una categoría puede tener muchos perfumes asociados (relación 1:N), pero cada perfume pertenece a una única categoría.
+Sitio web dinámico que permite visualizar y administrar un catálogo de fragancias exclusivas. 
+Los usuarios públicos pueden navegar por las familias olfativas, ver el catálogo general y filtrar perfumes. 
+El administrador puede gestionar el contenido completo del sitio mediante un sistema de ABM.
 
----
+## Funcionalidades y Roles (Requerimientos A y B)
 
-## Rol de cada integrante
+### Acceso Público
+- **Listado y Filtro por Categoría [Responsabilidad de Nicolas Diaz Rodriguez - Rol B]:** Interfaz pública que lista las familias olfativas y permite filtrar y listar de forma dinámica únicamente los perfumes pertenecientes a la categoría seleccionada (Cumplimiento del **Requerimiento B** de la cátedra).
+- **Detalle de Ítems [Responsabilidad de Jerónimo Vargas - Rol A]:** Vista de detalles individuales para cada perfume con todas sus especificaciones técnicas y notas aromáticas.
+- **Soporte Visual:** Manejo de imágenes opcionales con fallbacks elegantes tanto para categorías (Rol B) como para perfumes (Rol A).
 
-- *Jerónimo Vargas (Rol A):* Desarrollo de la entidad N (Perfumes), CRUD completo de ítems con selección dinámica de categorías, sistema de enrutamiento base, control de accesos mediante sesiones y procesamiento del inicio de sesión (Login).
-- *Nicolas Diaz Rodriguez (Rol B):* Desarrollo de la entidad 1 (Categorías), CRUD completo de categorías, listado público de categorías con ítems filtrados por categoría, soporte de imágenes opcionales en el catálogo y funcionalidad de cierre de sesión (Logout).
+### Acceso Administrador (Panel de Control)
+- **Autenticación y Sesiones [Responsabilidad de Jerónimo Vargas - Rol A]:** Formulario de Login seguro, procesamiento y control de accesos en el ruteo mediante middlewares según el nivel de usuario (`level`).
+- **ABM de Perfumes [Responsabilidad de Jerónimo Vargas - Rol A]:** CRUD completo de la entidad N (Perfumes), permitiendo el alta con selección dinámica de categorías, edición y baja.
+- **ABM de Categorías [Responsabilidad de Nicolas Diaz Rodriguez - Rol B]:** CRUD completo de la entidad 1 (Categorías) para dar de alta, editar y borrar familias olfativas, protegiendo los datos mediante integridad referencial.
+- **Cierre de Sesión [Responsabilidad de Nicolas Diaz Rodriguez - Rol B]:** Funcionalidad de Logout para destruir la sesión de forma segura.
 
----
+## Diagrama de Entidad Relación (DER)
+El modelo de datos cuenta con una relación 1:N entre las entidades **categorias** y **perfume**. 
+Un perfume pertenece a una única categoría (vinculado mediante `id_categoria`), mientras que una categoría puede englobar múltiples perfumes. 
+La entidad **usuarios** almacena las credenciales de acceso (`email`, `password`) y los permisos (`level`) para la administración privada del sitio.
 
-## Requerimientos No Funcionales Destacados
+![Diagrama de Entidad Relación Aura Premium](DER-PerfumeTPE.png)
 
-### 1. Instalación Automática (Auto-Deploy)
-El proyecto está pensado para que funcione "llave en mano". Al levantar la aplicación por primera vez en un entorno limpio, el sistema se conecta a MySQL, crea la base de datos de forma automática si no existe (usando el nombre definido en config.php) y ejecuta un script que crea las tablas e inyecta los datos de muestra iniciales y usuarios de prueba.
+## Cómo desplegar el sitio
 
-### 2. Estructura y Herencia de Modelos
-Para mantener el código ordenado y evitar repetir la lógica de conexión en cada archivo, se armó una clase base llamada Model. Esta clase centraliza la conexión a la base de datos mediante PDO y el deploy automático. Tanto PerfumeModel como CategoriaModel heredan de ella (extends Model), aprovechando la conexión compartida.
+### Requisitos
+- Servidor Apache y motor de bases de datos MySQL (se recomienda usar XAMPP).
+- PHP 8.0 o superior.
 
-### 3. Seguridad y Control de Accesos
-La seguridad de las rutas privadas se centralizó en el archivo de ruteo (router.php) mediante middlewares de sesión. Si un usuario no logueado intenta forzar una URL privada o enviar un formulario por POST a una ruta administrativa, el sistema lo frena antes de que alcance la lógica del controlador.
+### Pasos
+1. Clonar o copiar el repositorio dentro de la carpeta `htdocs` de XAMPP.
+2. Iniciar los servicios de Apache y MySQL desde el Panel de Control de XAMPP.
+3. Acceder desde el navegador a la URL del proyecto: `http://localhost/PerfumeTPE/` (o reemplazar por el nombre asignado a la carpeta del repositorio).
 
----
+> **Importante (Auto-Deploy):** No es necesario importar ningún archivo `.sql` manualmente. La base de datos se creará automáticamente, generará la estructura de tablas (`categorias`, `perfume`, `usuarios`) e inyectará los datos iniciales y el administrador de prueba en el primer acceso a la página. Si se requiere modificar el host o las credenciales, editar las constantes en `config.php`.
 
-## Instrucciones de Despliegue (Apache y MySQL)
-
-Para levantar y probar el sitio en un servidor local (como XAMPP o WampServer), siga estos pasos:
-
-1. *Copiar el proyecto:* Descargue o clone esta carpeta y colóquela dentro del directorio raíz de su servidor Apache (habitualmente la carpeta htdocs en XAMPP).
-2. *Configurar las credenciales:* Abra el archivo config.php ubicado en la raíz del proyecto y configure las constantes según los datos de su entorno local (host, usuario y contraseña de MySQL). 
-3. *Nombre de la Base de Datos:* Por defecto, la constante MYSQL_DB está configurada como perfumetpe. No es necesario crearla manualmente en phpMyAdmin; el sistema se encargará de crearla y poblarla en la primera ejecución.
-4. *Acceso al sitio:* Inicie los servicios de Apache y MySQL desde su panel de control local y acceda desde el navegador a la URL correspondiente (por ejemplo: http://localhost/PerfumeTPE/).
-
----
-
-## Usuario y Clave para administrador
-
-Para acceder a las secciones privadas de administración (Panel de control, altas, bajas y modificaciones), utilice los siguientes datos de acceso ya cargados en el sistema:
-
-- *Usuario (Email):* adminperfume@gmail.com
-- *Contraseña:* admin
+## Usuario administrador
+Para ingresar al panel de control y probar el ABM, utilice las siguientes credenciales:
+- **Usuario:** adminperfume@gmail.com
+- **Contraseña:** admin
