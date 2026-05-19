@@ -1,11 +1,9 @@
 <?php
 
-class UserModel{
+class UserModel extends Model{
     
-    private $db;
-
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=perfumetpe;charset=utf8', 'root', '');
+    public function __construct() {
+        parent::__construct(); 
     }
 
     public function getUserByEmail($email){
@@ -20,4 +18,6 @@ class UserModel{
         $query->execute([$email, $password]);
         return $this->db->lastInsertId();
     }
+
+    
 }

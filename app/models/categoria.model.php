@@ -1,39 +1,41 @@
 <?php
-class CategoriaModel{
-    private $db;
+class CategoriaModel extends Model{
 
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=perfumetpe;charset=utf8', 'root', '');
+    public function __construct() {
+        parent::__construct(); 
     }
 
-    public function getCategorias (){ // Listado de categorias
+    public function getCategorias() {
         $query = $this->db->prepare('SELECT * FROM categorias');
         $query->execute();
-        $categorias = $query->fetchAll(PDO::FETCH_OBJ);
-        return $categorias; 
+        return $query->fetchAll(PDO::FETCH_OBJ); 
     }
 
-    public function getCategoria ($id){ // Categoria por ID
+    public function getCategoriaItems($id) { 
         $query = $this->db->prepare('SELECT p.*, c.nombre AS nombre_categoria 
             FROM categorias c 
             JOIN perfume p ON c.id = p.id_categoria
             WHERE c.id = ?
         ');
         $query->execute([$id]);
-
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function insertCategoria($nombre) {
-        $query = $this->db->prepare('INSERT INTO categorias (nombre) VALUES (?)');
-        $query->execute([$nombre]);
+    public function getCategoriaById($id) {
+        $query = $this->db->prepare('SELECT * FROM categorias WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
+    public function insertCategoria($nombre, $imagen = null) {
+        $query = $this->db->prepare('INSERT INTO categorias (nombre, imagen) VALUES (?, ?)');
+        $query->execute([$nombre, $imagen]);
         return $this->db->lastInsertId();
     }
 
-    public function updateCategoria($id, $nombre) {
-        $query = $this->db->prepare('UPDATE categorias SET nombre = ? WHERE id = ?');
-        return $query->execute([$nombre, $id]);
+    public function updateCategoria($id, $nombre, $imagen = null) {
+        $query = $this->db->prepare('UPDATE categorias SET nombre = ?, imagen = ? WHERE id = ?');
+        return $query->execute([$nombre, $imagen, $id]);
     }
 
     public function deleteCategoria($id) {

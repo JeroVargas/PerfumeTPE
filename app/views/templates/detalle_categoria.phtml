@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle Categoría</title>
-</head>
-<body>
+<?php require 'app/views/templates/layout/header.phtml' ?>
 
-    <h1>Perfumes de la categoría</h1>
+<main class="container py-5">
+    <section class="product-section">
 
-    <?php if (!empty($categoria)): ?>
+        <h2 class="mb-3">
+            <?= !empty($categoria) ? 'Perfumes de ' . htmlspecialchars($categoria[0]->nombre_categoria) : 'Categoría' ?>
+        </h2>
 
-        <h2><?php echo $categoria[0]->nombre_categoria; ?></h2>
+        <p class="section-description">
+            Descubre los perfumes disponibles en esta categoría.
+        </p>
 
-        <ul>
-            <?php foreach ($categoria as $perfume): ?>
-                <li>
-                    <?php echo $perfume->nombre; ?> - $<?php echo $perfume->precio; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?php if (empty($categoria)): ?>
+            <div class="alert alert-info text-center">
+                No hay perfumes en esta categoría.
+            </div>
+        <?php else: ?>
+            <div class="card-grid">
+                <?php foreach ($categoria as $perfume): ?>
+                    <div class="item-card">
+                        <div class="item-card-content">
+                            <h3><?= htmlspecialchars($perfume->nombre) ?></h3>
+                            <p><strong>Precio:</strong> $<?= htmlspecialchars($perfume->precio) ?></p>
+                        </div>
 
-    <?php else: ?>
-        <p>No hay perfumes en esta categoría.</p>
-    <?php endif; ?>
+                        <div class="item-card-footer">
+                            <a href="detalle_perfume/<?= $perfume->id ?>">
+                                Ver detalles →
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
-</body>
-</html>
+    </section>
+</main>
+
+<?php require 'app/views/templates/layout/footer.phtml' ?>

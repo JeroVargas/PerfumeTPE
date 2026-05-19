@@ -1,9 +1,8 @@
 <?php
-class PerfumeModel{
-    private $db;
+class PerfumeModel extends Model{
 
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=perfumetpe;charset=utf8', 'root', '');
+    public function __construct() {
+        parent::__construct(); 
     }
 
     public function getPerfumes(){
@@ -20,15 +19,15 @@ class PerfumeModel{
         return $perfume;
     }
 
-    public function insertPerfume($id_caterogia,$nombre,$nota,$precio){
-        $query = $this->db->prepare('INSERT INTO perfume(id_categoria,nombre,nota,precio) VALUE (?,?,?,?)');
-        $query->execute([$id_caterogia,$nombre,$nota,$precio]);
+    public function insertPerfume($id_caterogia,$nombre,$nota,$precio,$imagen = null){
+        $query = $this->db->prepare('INSERT INTO perfume(id_categoria,nombre,nota,precio,imagen) VALUE (?,?,?,?,?)');
+        $query->execute([$id_caterogia,$nombre,$nota,$precio,$imagen]);
         return $this->db->lastInsertId();
     }
 
-    public function updatePerfume($id,$id_categoria,$nombre,$nota,$precio){
-        $query = $this->db->prepare('UPDATE perfume SET id_categoria = ? , nombre = ? , nota = ? , precio = ? WHERE id = ?');
-        $query -> execute([$id_categoria,$nombre,$nota,$precio,$id]);
+    public function updatePerfume($id,$id_categoria,$nombre,$nota,$precio,$imagen = null){
+        $query = $this->db->prepare('UPDATE perfume SET id_categoria = ? , nombre = ? , nota = ? , precio = ? , imagen = ? WHERE id = ?');
+        $query -> execute([$id_categoria,$nombre,$nota,$precio,$imagen,$id]);
     }
 
     public function deletePerfume($id){

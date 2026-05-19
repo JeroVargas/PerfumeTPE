@@ -19,6 +19,13 @@ class AuthController{
         require 'app/views/templates/form_register.phtml';
     }
 
+    public function logout() {
+        session_start();
+        session_destroy();
+        
+        header('Location: ' . BASE_URL . 'index');
+    }
+
     public function registerUser(){
 
         $userEmail = $_POST['email'];
@@ -26,18 +33,18 @@ class AuthController{
 
         if (empty($userEmail) || empty($userPassword)) {
             $this->showRegister("Por favor, complete todos los campos.");
-            return; // Detiene la ejecución aquí
+            return;
         }
-        //Verificar si el email ya existe
+        
         $userExistente = $this->model->getUserByEmail($userEmail);
 
         if ($userExistente){
             $this->showRegister("El correo electrónico ya está en uso. Por favor, elija otro.");
         } else {
-            // Si no existe, procedemos a crearlo
+           
             $hash = password_hash($userPassword, PASSWORD_ARGON2ID);
             $this->model->addUser($userEmail, $hash);
-            // Y lo enviamos a la página de login para que pueda iniciar sesión
+        
             header('Location: ' . BASE_URL . 'login');
         }
     }

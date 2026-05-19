@@ -16,11 +16,12 @@
                 <?php foreach ($perfumes as $perfumes): ?>
                     <div class="item-card">
                         <div class="item-card-content">
-                            <h3><?= htmlspecialchars($perfumes->tipo_variante) ?></h3>
+                            
                             <p><strong>Categoría:</strong> <?= htmlspecialchars($perfumes->categoria) ?></p>
                             <p><strong>Nombre:</strong> <?= htmlspecialchars($perfumes->nombre) ?></p>
                             <p><strong>Nota:</strong> <?= htmlspecialchars($perfumes->nota) ?></p>
                             <p><strong>Precio:</strong> $<?= htmlspecialchars($perfumes->precio)?></p>
+                            <p><strong>imagen</strong> <?= htmlspecialchars($perfumes->imagen)?></p>
                         </div>
                         <div class="item-card-footer">
                             <a href="detalle_perfume/<?= $perfumes->id ?>">Ver más detalles →</a>

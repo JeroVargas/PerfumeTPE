@@ -1,0 +1,37 @@
+<?php require 'app/views/templates/layout/header.phtml' ?>
+
+<main class="container py-5">
+    <section class="product-section d-flex justify-content-center">
+        
+        <div class="item-card" style="width: 100%; max-width: 500px;">
+            <h2 class="mb-4 text-center">Agregar Nueva Categoría</h2>
+            <p class="section-description text-center">Crea una nueva familia olfativa para el catálogo de perfumes.</p>
+            
+            <form action="add-categoria" method="POST" class="mt-4">
+                
+                <div class="mb-4">
+                    <label for="nombre" style="color: #d4a373; font-weight: 600; display: block; margin-bottom: 8px;">Nombre de la Familia</label>
+                    <input type="text" name="nombre" 
+                           style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #111; color: white;" 
+                           id="nombre" placeholder="Ej: Orientales, Ambarados..." required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="imagen" style="color: #d4a373; font-weight: 600; display: block; margin-bottom: 8px;">URL de la Imagen (Opcional)</label>
+                    <input type="text" name="imagen" 
+                           style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #111; color: white;" 
+                           id="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                    <small style="color: #888; font-size: 0.8rem; display: block; margin-top: 5px;">Puedes pegar el link de una imagen alusiva.</small>
+                </div>
+
+                <div class="mt-5 d-flex flex-column gap-3">
+                    <button type="submit" class="btn w-100" style="border: none;">Crear Categoría</button>
+                    <a href="listaCategorias" class="text-center" style="color: #888; text-decoration: none; font-size: 0.9rem;">Cancelar y volver</a>
+                </div>
+            </form>
+        </div>
+
+    </section>
+</main>
+
+<?php require 'app/views/templates/layout/footer.phtml' ?>
