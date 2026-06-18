@@ -63,9 +63,17 @@ En caso de no realizar dicha autenticacion por token no se puede hacer modificac
 
 ###  5. Crear Categoria (POST Protegido)
 * **URL:** `POST http://localhost/TPE-Perfumes/api/categorias`
+* **Body (JSON):**
+  ```json
+  {
+    "nombre": "Gourmand",
+    "imagen": null
+  }
 
 ###  6. Modificar Categoria (PUT Protegido)
 * **URL:** `PUT http://localhost/TPE-Perfumes/api/categorias/5`
-
-###  7. Crear Categoria (POST Protegido)
-* **URL:** `POST http://localhost/TPE-Perfumes/api/categorias`
+* **Body (JSON):**
+  ```json
+  {
+    "nombre": "Citrico"
+  }
