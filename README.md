@@ -55,7 +55,7 @@ En caso de no realizar dicha autenticacion por token no se puede hacer modificac
 ###  2. Listar Todas las Categorias + Ordenar (GET Publico)
 * **URL:** `GET http://localhost/TPE-Perfumes/api/categorias?sort=nombre&order=DESC`
 
-###  3. Filtrar Categoria por Nombre (GET Publico)
+###  3. Filtrar Categoria por filtro (GET Publico)
 * **URL:** `GET http://localhost/TPE-Perfumes/api/categorias?nombre=Amad`
 
 ###  4. Obtener Categoria por ID + Relacion (GET Publico)
